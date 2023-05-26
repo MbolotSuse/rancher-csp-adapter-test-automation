@@ -3,5 +3,5 @@ output "kubeconfig-generate" {
 }
 
 output rancher_hostname {
-  value = aws_route53_record.rancher_primary.fqdn
+  value = var.zone_name == "" ? data.kubernetes_service.load_balancer_service.status.0.load_balancer.0.ingress.0.hostname : aws_route53_record.rancher_primary[0].fqdn
 }

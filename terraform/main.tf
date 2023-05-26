@@ -64,5 +64,5 @@ resource "aws_route53_record" "rancher_primary" {
   type    = "CNAME"
   ttl     = 60
   records = [data.kubernetes_service.load_balancer_service.status.0.load_balancer.0.ingress.0.hostname]
-  zone_id = data.aws_route53_zone.primary_zone.id
+  zone_id = data.aws_route53_zone.primary_zone[0].id
 }
